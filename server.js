@@ -8,11 +8,11 @@ app.use(bodyParser.urlencoded({ extended: true })); // Middleware to parse appli
 
 app.post('/', (req, res) => {
   // Extract temperature and humidity data from the request body
-  const { temperature, humidity } = req.body;
+  const { temperature } = req.body;
 
   // Handle the received data (e.g., save to database, perform calculations, etc.)
   console.log('Received temperature:', temperature);
-  console.log('Received humidity:', humidity);
+ 
 
   // Send a response back to the ESP8266
   res.status(200).send('Data received successfully');
