@@ -22,6 +22,7 @@ app.post('/', (req, res) => {
 
 // Route handler for the GET request
 app.get('/', (req, res) => {
+  console.log("Welcome");
   res.status(200).send('Welcome to the server');
 });
 
