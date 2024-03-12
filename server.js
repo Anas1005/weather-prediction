@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.urlencoded({ extended: true })); // Middleware to parse application/x-www-form-urlencoded
+// app.use(bodyParser.urlencoded({ extended: true })); // Middleware to parse application/x-www-form-urlencoded
+app.use(express.json());
 
 app.get('/', (req, res) => {
   // Extract temperature and humidity data from the request body
