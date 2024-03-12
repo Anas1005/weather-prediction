@@ -32,16 +32,18 @@ app.post('/saveData', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-  // Extract temperature and humidity data from the request body
-  const { temperature } = req.body;
+  // Extract temperature, humidity, and pressure data from the request body
+  const { temperature, humidity, pressure } = req.body;
 
   // Handle the received data (e.g., save to database, perform calculations, etc.)
   console.log('Received temperature:', temperature);
- 
-
+  console.log('Received humidity:', humidity);
+  console.log('Received pressure:', pressure);
+  
   // Send a response back to the ESP8266
-  res.status(200).send('Temp received successfully');
+  res.status(200).send('Data received successfully');
 });
+
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
