@@ -7,14 +7,14 @@ exports.saveSensorReading= async (req, res) => {
         const { temperature, humidity, pressure } = req.body;
 
         // Create a new sensor reading document
-        // const sensorReading = new SensorReading({
-        //     temperature,
-        //     humidity,
-        //     pressure
-        // });
+        const sensorReading = new SensorReading({
+            temperature,
+            humidity,
+            pressure
+        });
 
-        // // Save the sensor reading to the database
-        // await sensorReading.save();
+        // Save the sensor reading to the database
+        await sensorReading.save();
         console.log("Saved",temperature);
 
         // Send a success response
