@@ -1,49 +1,26 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const { saveSensorReading } = require('./controllers/sensorController'); // Import the controller function
+const dbConnect = require("./config/database");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.urlencoded({ extended: true })); // Middleware to parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/gett', (req, res) => {
-  // Extract temperature and humidity data from the request body
-  // const { temperature } = req.body;
-
-  // Handle the received data (e.g., save to database, perform calculations, etc.)
-  console.log('Server Called....:');
- 
-
-  // Send a response back to the ESP8266
-  res.status(200).send('Server Called successfully');
+app.get('/', (req, res) => {
+  console.log('Server called successfully');
+  res.status(200).send('Server called successfully');
 });
 
-app.post('/saveData', (req, res) => {
-  // Extract temperature and humidity data from the request body
-  const { temperature } = req.body;
+// Use the controller function to handle POST requests for sensor readings
+app.post('/', saveSensorReading);
 
-  // Handle the received data (e.g., save to database, perform calculations, etc.)
-  console.log('Received Save DATA:', temperature);
- 
 
-  // Send a response back to the ESP8266
-  res.status(200).send('Data received successfully');
-});
-
-app.post('/', (req, res) => {
-  // Extract temperature, humidity, and pressure data from the request body
-  const { temperature, humidity, pressure } = req.body;
-
-  // Handle the received data (e.g., save to database, perform calculations, etc.)
-  console.log('Received temperature:', temperature);
-  console.log('Received humidity:', humidity);
-  console.log('Received pressure:', pressure);
-  
-  // Send a response back to the ESP8266
-  res.status(200).send('Data received successfully');
-});
-
+dbConnect();
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
