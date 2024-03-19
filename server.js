@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const { Server } = require("socket.io");
 const SensorReading = require('./models/sensorReadingModel');
 const http = require('http'); // Import the HTTP module
-const socketIo = require('socket.io'); // Import Socket.IO library
 // const { saveSensorReading } = require('./controllers/sensorController');
 const dbConnect = require("./config/database");
 const dotenv = require("dotenv");
@@ -41,9 +40,15 @@ dbConnect();
 io.on("connection", async (socket) => {
   console.log(`User connected: ${socket.id}`);
 
-  // Log the handshake query information
-  // console.log("Handshake Query:", socket.handshake.query);
+  // Emit a test message to the client upon connection
+  // io.to(socket.id).emit('testMessage', { message: 'Hello from the server!' });
+
+  socket.on("disconnect", async () => {
+    console.log("User disconnected:", socket.id);
+  });
 });
+
+
 
 
 server.listen(PORT, () => {
@@ -61,7 +66,8 @@ async function saveSensorReading (req, res) {
     const { temperature, humidity, pressure } = req.body;
 
     // Emit the sensor data to all connected Socket.IO clients
-    // io.emit('sensorData', { temperature, humidity, pressure });
+    // io.emit('message', { temperature, humidity, pressure });
+    io.emit('message', { temperature : "Hello From..........." });
 
     const sensorReading = new SensorReading({
         temperature,
@@ -69,6 +75,7 @@ async function saveSensorReading (req, res) {
         pressure
     });
 
+  
     // Save the sensor reading to the database
     await sensorReading.save();
     console.log("Saved",temperature);
