@@ -68,7 +68,8 @@ app.get('/auth/googleRedirect',
         // Set the token as a cookie
         // res.cookie('jwtToken', token, { httpOnly: true });
         // Redirect back to the React application
-        res.redirect(`${CLIENT_URL}/secret?token=${token}`);
+        // res.redirect(`${CLIENT_URL}/secret?token=${token}`);
+        res.redirect(`${CLIENT_URL}`);
   });
 
 
