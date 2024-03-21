@@ -64,6 +64,7 @@ app.get('/auth/googleRedirect',
   passport.authenticate('google', { failureRedirect: '/failure', session:false  }),
   function(req, res) {
        const token = jwt.sign({ userId: "Anas Saif", email: "anassaif@.com" }, process.env.JWT_SECRET, { expiresIn: "8h" });
+       console.log("Userrrr",req.user)
         // Set the token as a cookie
         // res.cookie('jwtToken', token, { httpOnly: true });
         // Redirect back to the React application
