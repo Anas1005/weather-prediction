@@ -63,7 +63,7 @@ app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "em
 app.get('/auth/googleRedirect', 
   passport.authenticate('google', { failureRedirect: '/failure', session:false  }),
   function(req, res) {
-       const token = jwt.sign({ userId: "Anas Saif", email: "anassaif@.com" }, "dnajdnajndjanj312nk12nkn", { expiresIn: "8h" });
+       const token = jwt.sign({ userId: "Anas Saif", email: "anassaif@.com" }, process.env.JWT_SECRET, { expiresIn: "8h" });
         // Set the token as a cookie
         // res.cookie('jwtToken', token, { httpOnly: true });
         // Redirect back to the React application

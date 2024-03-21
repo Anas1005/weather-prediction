@@ -7,8 +7,8 @@ const isProduction = process.env.NODE_ENV === "production";
 const BACKEND_URL = isProduction ? "https://weather-prediction-xfpl.onrender.com":"http://localhost:4000";
 
 passport.use(new GoogleStrategy({
-  clientID: "755121633595-usorn95fu0b5nasdtettbdr08rbjv3rb.apps.googleusercontent.com",
-  clientSecret: "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",
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: `${BACKEND_URL}/auth/googleRedirect`,
 
 },
