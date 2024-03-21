@@ -32,7 +32,7 @@ const PORT = process.env.PORT || 4000;
 
 
 const isProduction = process.env.NODE_ENV === "production";
-const CLIENT_URL = isProduction ? "https://weather-app-frontend-27eh7ymx6-anas-saifs-projects.vercel.app":"http://localhost:3000";
+const CLIENT_URL = isProduction ? "https://weather-app-frontend-kohl.vercel.app":"http://localhost:3000";
 
 
 app.get('/', (req, res) => {
