@@ -4,7 +4,6 @@ const { Server } = require("socket.io");
 const SensorReading = require('./models/sensorReadingModel');
 const jwt = require("jsonwebtoken");
 const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const http = require('http'); // Import the HTTP module
 // const { saveSensorReading } = require('./controllers/sensorController');
 const dbConnect = require("./config/database");
@@ -126,7 +125,7 @@ async function saveSensorReading (req, res) {
   
     // Save the sensor reading to the database
     await sensorReading.save();
-    console.log("Saved",temperature);
+    console.log("Saved",sensorReading);
 
     // Send a success response
     res.status(201).json({ message: 'Sensor reading saved successfully' });
