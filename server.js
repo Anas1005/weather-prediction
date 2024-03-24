@@ -113,7 +113,7 @@ async function saveSensorReading (req, res) {
     const { temperature, humidity, pressure } = req.body;
 
     // Emit the sensor data to all connected Socket.IO clients
-    // io.emit('message', { temperature, humidity, pressure });
+    io.emit('sensorData', { temperature, humidity, pressure });
     // io.emit('message', { temperature : "Hello From..........." });
 
     const sensorReading = new SensorReading({
