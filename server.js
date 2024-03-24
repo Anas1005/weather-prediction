@@ -72,7 +72,7 @@ app.get('/auth/googleRedirect',
   });
 
 
-// dbConnect();
+dbConnect();
 
 io.on("connection", async (socket) => {
   console.log(`User connected: ${socket.id}`);
