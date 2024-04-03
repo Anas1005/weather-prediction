@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const { Server } = require("socket.io");
 const SensorReading = require('./models/sensorReadingModel');
 const http = require('http');
+const axios = require("axios");
 const dbConnect = require("./config/database");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -35,6 +36,21 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', saveSensorReading);
+
+
+app.post("/predict", async (req, res) => {
+  try {
+    const response = await axios.post(
+      "https://flask-weather-v3.onrender.com/predict",
+      req.body
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error making prediction");
+  }
+});
+
 dbConnect();
 
 
