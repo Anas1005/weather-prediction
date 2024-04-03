@@ -39,11 +39,13 @@ app.post('/', saveSensorReading);
 
 
 app.post("/predict", async (req, res) => {
+  console.log("Req",req.body);
   try {
     const response = await axios.post(
       "https://flask-weather-v3.onrender.com/predict",
       req.body
     );
+    console.log("Response", response.data)
     res.json(response.data);
   } catch (error) {
     console.error(error);
