@@ -30,12 +30,12 @@ const isProduction = process.env.NODE_ENV === "production";
 // const CLIENT_URL = isProduction ? "https://weather-app-frontend-kohl.vercel.app":"http://localhost:3000";
 
 
-app.get('/', (req, res) => {
-  console.log('Server called successfully');
-  res.status(200).send('Server called successfully');
-});
+// app.get('/', (req, res) => {
+//   console.log('Server called successfully');
+//   res.status(200).send('Server called successfully');
+// });
 
-app.post('/', saveSensorReading);
+// app.post('/', saveSensorReading);
 
 
 app.post("/predict", async (req, res) => {
@@ -56,21 +56,21 @@ app.post("/predict", async (req, res) => {
 dbConnect();
 
 
-io.on("connection", async (socket) => {
-  console.log(`User connected: ${socket.id}`);
-  socket.emit('testMessage', { message: 'Hello from the server!' });
-  console.log("Test message emitted to client.");
-  socket.on("lol", async (data, callback) => {
-    console.log("Lol....", data);
-    const dataaa = {message:'Hello CALLBACK...'}
-     socket.emit("lolback",{dataaa})
-  });
+// io.on("connection", async (socket) => {
+//   console.log(`User connected: ${socket.id}`);
+//   socket.emit('testMessage', { message: 'Hello from the server!' });
+//   console.log("Test message emitted to client.");
+//   socket.on("lol", async (data, callback) => {
+//     console.log("Lol....", data);
+//     const dataaa = {message:'Hello CALLBACK...'}
+//      socket.emit("lolback",{dataaa})
+//   });
 
 
-  socket.on("disconnect", async () => {
-    console.log("User disconnected:", socket.id);
-  });
-});
+//   socket.on("disconnect", async () => {
+//     console.log("User disconnected:", socket.id);
+//   });
+// });
 
 
 
