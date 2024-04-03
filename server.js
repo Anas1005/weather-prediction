@@ -16,12 +16,13 @@ app.use(express.json());
 
 
 const server = http.createServer(app); // Create HTTP server
-const io = new Server(server, {
-    cors: {
-      origin: "*",
-      methods: ["GET", "POST"],
-    },
-  });
+// const io = new Server(server, {
+//     cors: {
+//       origin: "*",
+//       methods: ["GET", "POST"],
+//     },
+//   });
+app.use(cors());
   
 const PORT = process.env.PORT || 4000;
 
